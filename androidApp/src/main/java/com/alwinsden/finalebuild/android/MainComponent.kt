@@ -171,6 +171,7 @@ fun VerticalScrollMain() {
             }
             SearchBar()
             GpsAlert()
+            ImageSlider()
         }
     }
 }
