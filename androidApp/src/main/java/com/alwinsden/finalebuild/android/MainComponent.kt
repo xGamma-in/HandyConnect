@@ -172,6 +172,9 @@ fun VerticalScrollMain() {
             SearchBar()
             GpsAlert()
             ImageSlider()
+            QuickAccess()
+            ReferralRewards()
+            FeatureLising()
         }
     }
 }

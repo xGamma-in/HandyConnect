@@ -45,8 +45,11 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.AsyncImage
+import com.alwinsden.finalebuild.android.ui.ImageData
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.HorizontalPagerIndicator
@@ -55,6 +58,248 @@ import com.google.accompanist.pager.rememberPagerState
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.yield
 import kotlin.math.absoluteValue
+
+//features listing
+@Composable
+fun FeatureLising() {
+    //all the listing resources
+    val imageData = listOf(
+        ImageData(
+            R.drawable.fac1, "Car\n" +
+                    "technician"
+        ),
+        ImageData(R.drawable.fac2, "Plumber"),
+        ImageData(R.drawable.fac3, "Electrician"),
+        ImageData(
+            R.drawable.fac4, "Wood\n" +
+                    "working"
+        ),
+        ImageData(
+            R.drawable.fac5, "Glass &\n" +
+                    "Ceramics"
+        ),
+        ImageData(
+            R.drawable.fac6, "Water\n" +
+                    "supplier"
+        ),
+        ImageData(
+            R.drawable.fac7, "Appliance\n" +
+                    "repair"
+        ),
+        ImageData(R.drawable.fac8, "See all"),
+    )
+    Box(
+        modifier = Modifier
+            .padding(10.dp)
+            .clip(RoundedCornerShape(10))
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight()
+                .background(color = Color(0xFFFFFFFF))
+                .border(
+                    color = Color(0xFF878787),
+                    width = .5.dp,
+                    shape = RoundedCornerShape(10)
+                )
+                .padding(bottom = 5.dp)
+        ) {
+            Text(
+                text = "Features",
+                fontFamily = urbanistFont,
+                fontWeight = FontWeight.Normal,
+                modifier = Modifier
+                    .padding(top = 10.dp, start = 20.dp)
+            )
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 10.dp),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ) {
+                for (inx in 0..3) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Image(
+                            painter = painterResource(id = imageData[inx].resoureId),
+                            contentDescription = "",
+                            modifier = Modifier.size(45.dp)
+                        )
+                        Text(
+                            text = imageData[inx].label,
+                            fontFamily = urbanistFont,
+                            fontWeight = FontWeight.SemiBold,
+                            lineHeight = 17.sp,
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                }
+            }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 10.dp),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ) {
+                for (inx in 4..7) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Image(
+                            painter = painterResource(id = imageData[inx].resoureId),
+                            contentDescription = "",
+                            modifier = Modifier.size(45.dp)
+                        )
+                        Text(
+                            text = imageData[inx].label,
+                            fontFamily = urbanistFont,
+                            fontWeight = FontWeight.SemiBold,
+                            lineHeight = 17.sp,
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                }
+            }
+            //TODO: LazyGrid Code fails to run app.
+//            LazyVerticalGrid(columns = GridCells.Fixed(4),
+//                content = {
+//                    items(imageData) {
+//                        Image(painter = painterResource(id = it.resoureId), contentDescription = "")
+//                    }
+//                })
+        }
+    }
+}
+
+//referral options
+@Composable
+fun ReferralRewards() {
+    val imageList = listOf(
+        ImageData(R.drawable.test_smiley, "Refer the app"),
+        ImageData(R.drawable.test_smiley, "Earn Rewards!"),
+        ImageData(R.drawable.test_smiley, "Discover more?"),
+    )
+    Box(
+        modifier = Modifier
+            .padding(horizontal = 10.dp)
+            .fillMaxWidth()
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            for (imgData in imageList) {
+                Box(
+                    modifier = Modifier
+                        .clip(RoundedCornerShape(30))
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .background(color = Color(0xFF9DCB3C))
+                            .border(
+                                color = Color(0xFFFFFFFF),
+                                shape = RoundedCornerShape(30),
+                                width = 0.dp
+                            )
+                            .padding(
+                                horizontal = 15.dp,
+                                vertical = 10.dp
+                            ),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                    ) {
+                        AsyncImage(
+                            model = imgData.resoureId,
+                            contentDescription = null,
+                            modifier = Modifier.size(25.dp)
+                        )
+                        Text(
+                            text = imgData.label,
+                            color = Color(0xFFFFFFFF),
+                            fontFamily = urbanistFont,
+                            fontWeight = FontWeight.SemiBold,
+                            fontSize = 15.sp
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun QuickAccess() {
+    //image list
+    val imageList = listOf(
+        ImageData(
+            R.drawable.quicka1, "Credits/\n" +
+                    "cards"
+        ),
+        ImageData(
+            R.drawable.quicka2, "Tranx\n" +
+                    "history"
+        ),
+        ImageData(
+            R.drawable.quicka3, "Contact\n" +
+                    "Support"
+        ),
+        ImageData(
+            R.drawable.quicka4, "Rate &\n" +
+                    "review"
+        )
+    )
+    Box(
+        modifier = Modifier
+            .padding(10.dp)
+            .clip(RoundedCornerShape(20))
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .fillMaxHeight()
+                .background(color = Color(0xFFFFFFFF))
+                .border(
+                    color = Color(0xFF878787),
+                    width = .5.dp,
+                    shape = RoundedCornerShape(20)
+                )
+                .padding(bottom = 5.dp)
+        ) {
+            Text(
+                text = "Quick Access",
+                fontFamily = urbanistFont,
+                fontWeight = FontWeight.Normal,
+                modifier = Modifier
+                    .padding(top = 10.dp, start = 20.dp)
+            )
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 10.dp),
+                horizontalArrangement = Arrangement.SpaceEvenly,
+            ) {
+                for (imgUrl in imageList) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        AsyncImage(
+                            model = imgUrl.resoureId, contentDescription = null, modifier = Modifier
+                                .size(45.dp)
+                        )
+                        Text(
+                            text = imgUrl.label,
+                            fontFamily = urbanistFont,
+                            fontWeight = FontWeight.SemiBold,
+                            lineHeight = 17.sp,
+                            textAlign = TextAlign.Center
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
 
 //image slider
 @OptIn(ExperimentalPagerApi::class)
@@ -86,7 +331,7 @@ fun ImageSlider() {
             state = pagerState,
             contentPadding = PaddingValues(horizontal = 10.dp),
             modifier = Modifier
-                .height(145.dp)
+                .height(130.dp)
                 .fillMaxWidth()
                 .padding(top = 10.dp)
         ) { page ->

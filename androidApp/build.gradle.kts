@@ -47,4 +47,6 @@ dependencies {
     debugImplementation(libs.compose.ui.tooling)
     implementation("com.google.accompanist:accompanist-pager:0.28.0")
     implementation("com.google.accompanist:accompanist-pager-indicators:0.28.0")
+    implementation("androidx.core:core-splashscreen:1.0.1")
+    implementation("io.coil-kt:coil-compose:2.5.0")
 }
