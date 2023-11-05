@@ -28,6 +28,7 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -40,12 +41,15 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -90,7 +94,7 @@ fun FeatureLising() {
     )
     Box(
         modifier = Modifier
-            .padding(10.dp)
+            .padding(top = 10.dp, start = 10.dp, end = 10.dp, bottom = 65.dp)
             .clip(RoundedCornerShape(10))
     ) {
         Column(
@@ -179,7 +183,7 @@ fun ReferralRewards() {
     val imageList = listOf(
         ImageData(R.drawable.test_smiley, "Refer the app"),
         ImageData(R.drawable.test_smiley, "Earn Rewards!"),
-        ImageData(R.drawable.test_smiley, "Discover more?"),
+        ImageData(R.drawable.test_smiley, "Learn more"),
     )
     Box(
         modifier = Modifier
@@ -506,5 +510,90 @@ fun SearchBar() {
                 )
             }
         }
+    }
+}
+
+@Composable
+fun Home() {
+    MyApplicationTheme {
+        Surface(
+            modifier = Modifier
+                .fillMaxSize(),
+            color = Color.White
+        ) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(
+                        brush = HandyConnectMGradient(
+                            colors = listOf(
+                                Color(0xFFFFDEAF),
+                                Color(0xFFF8EEFF),
+                                Color.White,
+                            )
+                        )
+                    ),
+
+                ) {
+                Image(
+                    painter = painterResource(id = R.drawable.account_side),
+                    contentDescription = "account_desc",
+                    modifier = Modifier
+                        .padding(10.dp)
+                        .size(30.dp)
+                )
+                Column {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(55.dp)
+                    ) {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.hc_logo),
+                                contentDescription = "Test Cost",
+                                modifier = Modifier
+                                    .size(55.dp)
+                            )
+                        }
+                    }
+                    Divider(
+                        color = Color(0xFFB1B1B1),
+                        modifier = Modifier
+                            .height(1.dp)
+                            .fillMaxWidth()
+                    )
+                    VerticalScrollMain()
+                }
+            }
+        }
+    }
+}
+
+//adding gradient brush
+@Composable
+private fun HandyConnectMGradient(
+    colors: List<Color>
+): Brush {
+    return Brush.linearGradient(
+        colors = colors,
+        start = Offset.Zero,
+        end = Offset(0f, Float.POSITIVE_INFINITY)
+    )
+}
+
+@Composable
+fun GreetingView(text: String) {
+    Text(text = text)
+}
+
+@Preview
+@Composable
+fun DefaultPreview() {
+    MyApplicationTheme {
+        GreetingView("Hello, Android!")
     }
 }
