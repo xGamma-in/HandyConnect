@@ -95,7 +95,7 @@ fun FeatureLising() {
     Box(
         modifier = Modifier
             .padding(top = 10.dp, start = 10.dp, end = 10.dp, bottom = 65.dp)
-            .clip(RoundedCornerShape(10))
+            .clip(RoundedCornerShape(5))
     ) {
         Column(
             modifier = Modifier
@@ -105,7 +105,7 @@ fun FeatureLising() {
                 .border(
                     color = Color(0xFF878787),
                     width = .5.dp,
-                    shape = RoundedCornerShape(10)
+                    shape = RoundedCornerShape(5)
                 )
                 .padding(bottom = 5.dp)
         ) {
@@ -525,7 +525,7 @@ fun Home() {
                 modifier = Modifier
                     .fillMaxSize()
                     .background(
-                        brush = HandyConnectMGradient(
+                        brush = handyConnectMGradient(
                             colors = listOf(
                                 Color(0xFFFFDEAF),
                                 Color(0xFFF8EEFF),
@@ -568,6 +568,13 @@ fun Home() {
                     )
                     VerticalScrollMain()
                 }
+                Row(
+                    modifier = Modifier.align(alignment = Alignment.BottomCenter)
+                ) {
+                    Text(
+                        text = "Hey there!!",
+                    )
+                }
             }
         }
     }
@@ -575,7 +582,7 @@ fun Home() {
 
 //adding gradient brush
 @Composable
-private fun HandyConnectMGradient(
+private fun handyConnectMGradient(
     colors: List<Color>
 ): Brush {
     return Brush.linearGradient(
