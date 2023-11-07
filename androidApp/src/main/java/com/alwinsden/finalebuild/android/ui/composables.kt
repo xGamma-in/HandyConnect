@@ -94,7 +94,7 @@ fun FeatureLising() {
     )
     Box(
         modifier = Modifier
-            .padding(top = 10.dp, start = 10.dp, end = 10.dp, bottom = 65.dp)
+            .padding(top = 10.dp, start = 10.dp, end = 10.dp, bottom = 75.dp)
             .clip(RoundedCornerShape(5))
     ) {
         Column(
@@ -515,6 +515,13 @@ fun SearchBar() {
 
 @Composable
 fun Home() {
+    //here is the navigation control
+    var hyperDoc by remember {
+        mutableStateOf("home")
+    }
+    val navListB = listOf(
+        "Home", "Settings", "Account"
+    )
     MyApplicationTheme {
         Surface(
             modifier = Modifier
@@ -569,11 +576,102 @@ fun Home() {
                     VerticalScrollMain()
                 }
                 Row(
-                    modifier = Modifier.align(alignment = Alignment.BottomCenter)
+                    modifier = Modifier
+                        .align(alignment = Alignment.BottomCenter)
+                        .fillMaxWidth()
+                        .padding(
+                            10.dp
+                        )
+                        .clip(RoundedCornerShape(45))
+                        .border(
+                            width = 1.dp,
+                            shape = RoundedCornerShape(45),
+                            color = Color(0xFF878787)
+                        )
                 ) {
-                    Text(
-                        text = "Hey there!!",
-                    )
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(55.dp)
+                            .background(color = Color.White)
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .padding(5.dp)
+                                .fillMaxWidth()
+                                .fillMaxHeight()
+                                .clip(RoundedCornerShape(45))
+                        ) {
+                            Row(
+                                modifier = Modifier
+                                    .background(color = Color(0xFFE6E6E6))
+                                    .fillMaxWidth()
+                                    .fillMaxHeight()
+                                    .border(
+                                        width = .5.dp,
+                                        shape = RoundedCornerShape(45),
+                                        color = Color(0xFF878787)
+                                    ),
+                                horizontalArrangement = Arrangement.SpaceEvenly,
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                for (vls in navListB) {
+                                    Row(
+                                        modifier = Modifier
+                                            .background(color = Color(0xFFFF8A00))
+                                            .fillMaxHeight()
+                                            .padding(horizontal = 10.dp),
+                                        verticalAlignment = Alignment.CenterVertically,
+                                        horizontalArrangement = Arrangement.Center
+                                    ) {
+                                        Text(
+                                            text = "Home",
+                                            fontFamily = urbanistFont,
+                                            fontWeight = FontWeight.Bold,
+                                            color = Color(0xFF4F4F4F)
+                                        )
+                                    }
+                                }
+
+//                                Row(
+//                                    modifier = Modifier
+//                                        .background(
+//                                            color = if (hyperDoc == "home") {
+//                                                Color(0xFFFF8A00)
+//                                            } else {
+//                                                Color.Red
+//                                            }
+//                                        )
+//                                        .fillMaxHeight()
+//                                        .padding(horizontal = 10.dp),
+//                                    verticalAlignment = Alignment.CenterVertically,
+//                                    horizontalArrangement = Arrangement.Center
+//                                ) {
+//                                    Text(
+//                                        text = "Settings",
+//                                        fontFamily = urbanistFont,
+//                                        fontWeight = FontWeight.Bold,
+//                                        color = Color(0xFF4F4F4F)
+//                                    )
+//                                }
+//                                Row(
+//                                    modifier = Modifier
+//                                        .background(color = Color(0xFFFF8A00))
+//                                        .fillMaxHeight()
+//                                        .padding(horizontal = 10.dp),
+//                                    verticalAlignment = Alignment.CenterVertically,
+//                                    horizontalArrangement = Arrangement.Center
+//                                ) {
+//                                    Text(
+//                                        text = "Account",
+//                                        fontFamily = urbanistFont,
+//                                        fontWeight = FontWeight.Bold,
+//                                        color = Color(0xFFFFFFFF),
+//                                    )
+//                                }
+                            }
+                        }
+                    }
                 }
             }
         }
