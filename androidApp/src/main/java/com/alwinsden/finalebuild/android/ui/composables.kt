@@ -5,6 +5,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -517,7 +518,7 @@ fun SearchBar() {
 fun Home() {
     //here is the navigation control
     var hyperDoc by remember {
-        mutableStateOf("home")
+        mutableStateOf("Home")
     }
     val navListB = listOf(
         "Home", "Settings", "Account"
@@ -618,14 +619,25 @@ fun Home() {
                                 for (vls in navListB) {
                                     Row(
                                         modifier = Modifier
-                                            .background(color = Color(0xFFFF8A00))
+                                            .background(
+                                                color = Color(
+                                                    if (vls == hyperDoc) {
+                                                        0xFFFFFFFF
+                                                    } else {
+                                                        0xFFFF8A00
+                                                    }
+                                                )
+                                            )
                                             .fillMaxHeight()
+                                            .clickable {
+                                                hyperDoc = vls
+                                            }
                                             .padding(horizontal = 10.dp),
                                         verticalAlignment = Alignment.CenterVertically,
                                         horizontalArrangement = Arrangement.Center
                                     ) {
                                         Text(
-                                            text = "Home",
+                                            text = vls,
                                             fontFamily = urbanistFont,
                                             fontWeight = FontWeight.Bold,
                                             color = Color(0xFF4F4F4F)
