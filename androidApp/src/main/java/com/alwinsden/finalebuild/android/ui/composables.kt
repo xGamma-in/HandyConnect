@@ -5,6 +5,7 @@ import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -94,8 +95,8 @@ fun FeatureLising() {
     )
     Box(
         modifier = Modifier
-            .padding(top = 10.dp, start = 10.dp, end = 10.dp, bottom = 65.dp)
-            .clip(RoundedCornerShape(10))
+            .padding(top = 10.dp, start = 10.dp, end = 10.dp, bottom = 75.dp)
+            .clip(RoundedCornerShape(5))
     ) {
         Column(
             modifier = Modifier
@@ -105,7 +106,7 @@ fun FeatureLising() {
                 .border(
                     color = Color(0xFF878787),
                     width = .5.dp,
-                    shape = RoundedCornerShape(10)
+                    shape = RoundedCornerShape(5)
                 )
                 .padding(bottom = 5.dp)
         ) {
@@ -515,6 +516,13 @@ fun SearchBar() {
 
 @Composable
 fun Home() {
+    //here is the navigation control
+    var hyperDoc by remember {
+        mutableStateOf("Home")
+    }
+    val navListB = listOf(
+        "Home", "Settings", "Account"
+    )
     MyApplicationTheme {
         Surface(
             modifier = Modifier
@@ -525,7 +533,7 @@ fun Home() {
                 modifier = Modifier
                     .fillMaxSize()
                     .background(
-                        brush = HandyConnectMGradient(
+                        brush = handyConnectMGradient(
                             colors = listOf(
                                 Color(0xFFFFDEAF),
                                 Color(0xFFF8EEFF),
@@ -568,6 +576,115 @@ fun Home() {
                     )
                     VerticalScrollMain()
                 }
+                Row(
+                    modifier = Modifier
+                        .align(alignment = Alignment.BottomCenter)
+                        .fillMaxWidth()
+                        .padding(
+                            10.dp
+                        )
+                        .clip(RoundedCornerShape(45))
+                        .border(
+                            width = 1.dp,
+                            shape = RoundedCornerShape(45),
+                            color = Color(0xFF878787)
+                        )
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(55.dp)
+                            .background(color = Color.White)
+                    ) {
+                        Box(
+                            modifier = Modifier
+                                .padding(5.dp)
+                                .fillMaxWidth()
+                                .fillMaxHeight()
+                                .clip(RoundedCornerShape(45))
+                        ) {
+                            Row(
+                                modifier = Modifier
+                                    .background(color = Color(0xFFE6E6E6))
+                                    .fillMaxWidth()
+                                    .fillMaxHeight()
+                                    .border(
+                                        width = .5.dp,
+                                        shape = RoundedCornerShape(45),
+                                        color = Color(0xFF878787)
+                                    ),
+                                horizontalArrangement = Arrangement.SpaceEvenly,
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                for (vls in navListB) {
+                                    Row(
+                                        modifier = Modifier
+                                            .background(
+                                                color = Color(
+                                                    if (vls == hyperDoc) {
+                                                        0xFFFFFFFF
+                                                    } else {
+                                                        0xFFFF8A00
+                                                    }
+                                                )
+                                            )
+                                            .fillMaxHeight()
+                                            .clickable {
+                                                hyperDoc = vls
+                                            }
+                                            .padding(horizontal = 10.dp),
+                                        verticalAlignment = Alignment.CenterVertically,
+                                        horizontalArrangement = Arrangement.Center
+                                    ) {
+                                        Text(
+                                            text = vls,
+                                            fontFamily = urbanistFont,
+                                            fontWeight = FontWeight.Bold,
+                                            color = Color(0xFF4F4F4F)
+                                        )
+                                    }
+                                }
+
+//                                Row(
+//                                    modifier = Modifier
+//                                        .background(
+//                                            color = if (hyperDoc == "home") {
+//                                                Color(0xFFFF8A00)
+//                                            } else {
+//                                                Color.Red
+//                                            }
+//                                        )
+//                                        .fillMaxHeight()
+//                                        .padding(horizontal = 10.dp),
+//                                    verticalAlignment = Alignment.CenterVertically,
+//                                    horizontalArrangement = Arrangement.Center
+//                                ) {
+//                                    Text(
+//                                        text = "Settings",
+//                                        fontFamily = urbanistFont,
+//                                        fontWeight = FontWeight.Bold,
+//                                        color = Color(0xFF4F4F4F)
+//                                    )
+//                                }
+//                                Row(
+//                                    modifier = Modifier
+//                                        .background(color = Color(0xFFFF8A00))
+//                                        .fillMaxHeight()
+//                                        .padding(horizontal = 10.dp),
+//                                    verticalAlignment = Alignment.CenterVertically,
+//                                    horizontalArrangement = Arrangement.Center
+//                                ) {
+//                                    Text(
+//                                        text = "Account",
+//                                        fontFamily = urbanistFont,
+//                                        fontWeight = FontWeight.Bold,
+//                                        color = Color(0xFFFFFFFF),
+//                                    )
+//                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
@@ -575,7 +692,7 @@ fun Home() {
 
 //adding gradient brush
 @Composable
-private fun HandyConnectMGradient(
+private fun handyConnectMGradient(
     colors: List<Color>
 ): Brush {
     return Brush.linearGradient(
