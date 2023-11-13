@@ -20,51 +20,45 @@ extension Color {
 
 struct ContentView: View {
     var body: some View{
-        ZStack{
+        ZStack(
+            alignment: .topLeading
+        ){
             LinearGradient(gradient: Gradient(colors: [Color(hex: "FFDEAF"),
-                                                       Color(hex: "000000")]),
+                                                       Color(hex: "F8EEFF"),
+                                                       .white]),
                            startPoint: .top,
                            endPoint: .bottom)
                 .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
-            VStack{
-                Text("Cupertino, CA")
-                    .font(.system(size: 32, weight: .bold))
-                    .foregroundColor(.white)
-                    .padding()
-                VStack(
-                    spacing: 8
-                ){
-                    Image(systemName: "cloud.sun.fill")
-                        .renderingMode(.original)
+            Image(systemName: "person.circle")
+                .resizable()
+                .frame(width: 20, height: 20)
+                .padding(.top, 18)
+                .padding(.leading, 10 )
+            VStack(
+                alignment: .leading,
+                spacing: 0
+            )
+            {
+                HStack{
+                    Spacer()
+                    Image(.hcLogo)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: 180 ,height: 180)
-                    Text("76°")
-                        .font(.system(size: 70, weight: .medium))
-                        .foregroundColor(.white)
+                        .frame(width: 50, height: 50)
+                    Spacer()
+                }.frame(width: .infinity)
+                Rectangle()
+                    .frame(height: 0.3)
+                    .foregroundColor(.gray)
+                    .edgesIgnoringSafeArea(.horizontal)
+                ScrollView{
+                    VStack(
+                        alignment: .leading
+                    ){
+                        HorizontalTop()
+                        GpsNotify()
+                    }
                 }
-                .padding(.bottom, 40)
-                HStack(
-                    spacing: 30
-                ){
-                    WeatherTileH(dayOfWeek: "TUE", imageName: "cloud.sun.fill", temperature: 74)
-                    WeatherTileH(dayOfWeek: "WED", imageName: "sun.horizon.fill", temperature: 74)
-                    WeatherTileH(dayOfWeek: "THU", imageName: "moon.fill", temperature: 74)
-                    WeatherTileH(dayOfWeek: "FRI", imageName: "sun.dust.fill", temperature: 74)
-                    WeatherTileH(dayOfWeek: "SAT", imageName: "cloud.sun.fill", temperature: 74)
-                }
-                Spacer()
-                
-                Button{
-                    print("tapped")
-                } label: {
-                    Text("Change Day Time")
-                        .frame(width: 280, height: 50)
-                        .background(Color.white)
-                        .font(.system(size: 20, weight: .medium, design: .default))
-                        .clipShape(RoundedRectangle(cornerSize: CGSize(width: 10, height: 10)))
-                }
-                Spacer()
             }
         }
     }
