@@ -13,6 +13,7 @@
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 		F07B342B2B0252630065C2CA /* Composable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07B342A2B0252630065C2CA /* Composable.swift */; };
 		F07B342D2B02625E0065C2CA /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07B342C2B02625E0065C2CA /* Components.swift */; };
+		F0991B8C2B02749B00C992AF /* colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0991B8B2B02749B00C992AF /* colors.swift */; };
 		FF23523EA045A2E9CFAE7BE9 /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B88E9E72BCF1D80B8B61C29 /* Pods_iosApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +29,7 @@
 		7B88E9E72BCF1D80B8B61C29 /* Pods_iosApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F07B342A2B0252630065C2CA /* Composable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Composable.swift; sourceTree = "<group>"; };
 		F07B342C2B02625E0065C2CA /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
+		F0991B8B2B02749B00C992AF /* colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = colors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
+				F0991B8B2B02749B00C992AF /* colors.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				F0991B8C2B02749B00C992AF /* colors.swift in Sources */,
 				F07B342D2B02625E0065C2CA /* Components.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 				F07B342B2B0252630065C2CA /* Composable.swift in Sources */,

@@ -56,7 +56,9 @@ struct ContentView: View {
                         alignment: .leading
                     ){
                         HorizontalTop()
+                        GlobalSearch()
                         GpsNotify()
+                        ImageAdPreview()
                     }
                 }
             }
