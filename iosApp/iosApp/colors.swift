@@ -12,3 +12,4 @@ import Foundation
 var ThemeOrange = "FF8A00"
 var ThemeGrey = "878787"
 var ThemeMaroon = "C31F1F"
+var ThemeGreen = "9DCB3C"

@@ -20,45 +20,49 @@ extension Color {
 
 struct ContentView: View {
     var body: some View{
-        ZStack(
-            alignment: .topLeading
-        ){
-            LinearGradient(gradient: Gradient(colors: [Color(hex: "FFDEAF"),
-                                                       Color(hex: "F8EEFF"),
-                                                       .white]),
-                           startPoint: .top,
-                           endPoint: .bottom)
-                .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
-            Image(systemName: "person.circle")
-                .resizable()
-                .frame(width: 20, height: 20)
-                .padding(.top, 18)
-                .padding(.leading, 10 )
-            VStack(
-                alignment: .leading,
-                spacing: 0
-            )
-            {
-                HStack{
-                    Spacer()
-                    Image(.hcLogo)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 50, height: 50)
-                    Spacer()
-                }.frame(width: .infinity)
-                Rectangle()
-                    .frame(height: 0.3)
-                    .foregroundColor(.gray)
-                    .edgesIgnoringSafeArea(.horizontal)
-                ScrollView{
-                    VStack(
-                        alignment: .leading
-                    ){
-                        HorizontalTop()
-                        GlobalSearch()
-                        GpsNotify()
-                        ImageAdPreview()
+        NavigationView{
+            ZStack(
+                alignment: .topLeading
+            ){
+                LinearGradient(gradient: Gradient(colors: [Color(hex: "FFDEAF"),
+                                                           Color(hex: "F8EEFF"),
+                                                           .white]),
+                               startPoint: .top,
+                               endPoint: .bottom)
+                    .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+                Image(systemName: "person.circle")
+                    .resizable()
+                    .frame(width: 20, height: 20)
+                    .padding(.top, 18)
+                    .padding(.leading, 10 )
+                VStack(
+                    alignment: .leading,
+                    spacing: 0
+                )
+                {
+                    HStack{
+                        Spacer()
+                        Image(.hcLogo)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 50, height: 50)
+                        Spacer()
+                    }.frame(width: .infinity)
+                    Rectangle()
+                        .frame(height: 0.3)
+                        .foregroundColor(.gray)
+                        .edgesIgnoringSafeArea(.horizontal)
+                    ScrollView{
+                        VStack(
+                            alignment: .leading
+                        ){
+                            HorizontalTop()
+                            GlobalSearch()
+                            GpsNotify()
+                            ImageAdPreview()
+                            QkAccess()
+                            ReferallComponent()
+                        }
                     }
                 }
             }
@@ -68,7 +72,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
 	static var previews: some View {
-		ContentView()
+        ContentView()
 	}
 }
 
