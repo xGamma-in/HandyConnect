@@ -9,55 +9,98 @@
 import Foundation
 import SwiftUI
 
-struct HorizontalTop : View {
-    var body : some View {
-        HStack(
-            spacing: 0
+//home page UI
+struct HomeFlow : View {
+    var body: some View{
+        ZStack(
+            alignment: .topLeading
         ){
+            LinearGradient(gradient: Gradient(colors: [Color(hex: "FFDEAF"),
+                                                       Color(hex: "F8EEFF"),
+                                                       .white]),
+                           startPoint: .top,
+                           endPoint: .bottom)
+                .edgesIgnoringSafeArea(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/)
+            Image(systemName: "person.circle")
+                .resizable()
+                .frame(width: 20, height: 20)
+                .padding(.top, 18)
+                .padding(.leading, 10 )
             VStack(
-                alignment: .leading
-            ){
-                HStack(
-                    spacing: 3
-                ){
-                    Image(systemName: "house.fill")
-                        .foregroundColor(Color(hex: "FF8A00"))
-                    Text("Home")
-                        .font(.system(size: 17, weight: .bold))
-                    Menu {
-                            Button(action: {}) {
-                                Text("H.no 35, RK Layout\n" +
-                                     "Jp Nagar, Mysore - 570008")
-                                .font(.system(size: 10))
-                            }
-
-                            Button(action: {}) {
-                                Text("Srivatsa Road, Kuvmpura Puram\n" +
-                                     ", Mandya - 345000")
-                            }
-                        } label: {
-                                Image(systemName: "chevron.down")
-                                    .foregroundColor(.black)
-                        }
+                alignment: .leading,
+                spacing: 0
+            )
+            {
+                HStack{
+                    Spacer()
+                    Image(.hcLogo)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 50, height: 50)
+                    Spacer()
+                }.frame(width: .infinity)
+                Rectangle()
+                    .frame(height: 0.3)
+                    .foregroundColor(.gray)
+                    .edgesIgnoringSafeArea(.horizontal)
+                ScrollView{
+                    VStack(
+                        alignment: .leading
+                    ){
+                        HorizontalTop()
+                        GlobalSearch()
+                        GpsNotify()
+                        ImageAdPreview()
+                        QkAccess()
+                        ReferallComponent()
+                    }
                 }
-                Text("#436, Wall Street, NY, Delhi - 457455")
-                    .font(.system(size: 10))
-                    .foregroundColor(Color(hex: "787878"))
+            }
+        }
+    }
+}
+
+//Login Flow Page
+struct LoginFlow : View {
+    var body : some View {
+        VStack{
+            Spacer()
+            VStack{
+                Image(.loginFlowLogo)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 150)
+                HStack{
+                    Button(action:{}){
+                        HStack(spacing: 10){
+                            Image(.loginGoogleLogo)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 25)
+                            Text("Sign in with Google account")
+                                .foregroundColor(Color.black)
+                            
+                        }.padding(.horizontal, 15)
+                            .padding(.vertical, 10)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 30)
+                                    .stroke(Color(hex: ThemeGrey), lineWidth: 0.9)
+                            )
+                            .clipShape(RoundedRectangle(cornerRadius: 30))
+                    }
+                    
+                }.padding(.top, 15)
             }
             Spacer()
-            Button(action: {}){
-                Text("premium")
-                    .padding(.horizontal, 10)
-                    .foregroundColor(Color(hex: "FF8A00"))
-                    .background(Color.white)
-                    .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(Color(hex: "FF8A00"), lineWidth: 0.9)
-                        )
-                    .clipShape(RoundedRectangle(cornerSize: CGSize(width: 10, height: 10)))
-            }
-        }.padding(.top, 10)
-            .padding(.leading, 10)
-            .padding(.trailing, 10)
+            VStack(spacing: 10){
+                Text("Contest submission for")
+                    .font(.system(size: 15))
+                Image(.kConf2024)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 270)
+                    .grayscale(1.0)
+            }.padding(0)
+        }
     }
 }
