@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -53,6 +54,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.alwinsden.finalebuild.android.ui.ImageData
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -167,13 +169,6 @@ fun FeatureLising() {
                     }
                 }
             }
-            //TODO: LazyGrid Code fails to run app.
-//            LazyVerticalGrid(columns = GridCells.Fixed(4),
-//                content = {
-//                    items(imageData) {
-//                        Image(painter = painterResource(id = it.resoureId), contentDescription = "")
-//                    }
-//                })
         }
     }
 }
@@ -182,9 +177,9 @@ fun FeatureLising() {
 @Composable
 fun ReferralRewards() {
     val imageList = listOf(
-        ImageData(R.drawable.test_smiley, "Refer the app"),
-        ImageData(R.drawable.test_smiley, "Earn Rewards!"),
-        ImageData(R.drawable.test_smiley, "Learn more"),
+        ImageData(R.drawable.reciepts, "receipts"),
+        ImageData(R.drawable.settings_logo, "preferences"),
+        ImageData(R.drawable.smile_vector, "refer app"),
     )
     Box(
         modifier = Modifier
@@ -208,6 +203,7 @@ fun ReferralRewards() {
                                 shape = RoundedCornerShape(30),
                                 width = 0.dp
                             )
+                            .width(122.dp)
                             .padding(
                                 horizontal = 15.dp,
                                 vertical = 10.dp
@@ -541,8 +537,7 @@ fun Home() {
                             )
                         )
                     ),
-
-                ) {
+            ) {
                 Image(
                     painter = painterResource(id = R.drawable.account_side),
                     contentDescription = "account_desc",
@@ -617,70 +612,50 @@ fun Home() {
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
                                 for (vls in navListB) {
-                                    Row(
+                                    Box(
                                         modifier = Modifier
-                                            .background(
+                                            .clip(RoundedCornerShape(45)),
+                                    ) {
+                                        Row(
+                                            modifier = Modifier
+                                                .background(
+                                                    color = Color(
+                                                        if (vls == hyperDoc) {
+                                                            0xFFFF8A00
+                                                        } else {
+                                                            0xFFE6E6E6
+                                                        }
+                                                    )
+                                                )
+                                                .fillMaxHeight()
+                                                .width(130.dp)
+                                                .border(
+                                                    width = .1.dp,
+                                                    shape = RoundedCornerShape(50),
+                                                    color = Color(0xFFE6E6E6)
+                                                )
+                                                .clickable {
+                                                    hyperDoc = vls
+                                                }
+                                                .padding(horizontal = 10.dp),
+                                            verticalAlignment = Alignment.CenterVertically,
+                                            horizontalArrangement = Arrangement.Center
+                                        ) {
+                                            Text(
+                                                text = vls,
+                                                fontFamily = urbanistFont,
+                                                fontWeight = FontWeight.Bold,
                                                 color = Color(
                                                     if (vls == hyperDoc) {
                                                         0xFFFFFFFF
                                                     } else {
-                                                        0xFFFF8A00
+                                                        0xFF4F4F4F
                                                     }
                                                 )
                                             )
-                                            .fillMaxHeight()
-                                            .clickable {
-                                                hyperDoc = vls
-                                            }
-                                            .padding(horizontal = 10.dp),
-                                        verticalAlignment = Alignment.CenterVertically,
-                                        horizontalArrangement = Arrangement.Center
-                                    ) {
-                                        Text(
-                                            text = vls,
-                                            fontFamily = urbanistFont,
-                                            fontWeight = FontWeight.Bold,
-                                            color = Color(0xFF4F4F4F)
-                                        )
+                                        }
                                     }
                                 }
-
-//                                Row(
-//                                    modifier = Modifier
-//                                        .background(
-//                                            color = if (hyperDoc == "home") {
-//                                                Color(0xFFFF8A00)
-//                                            } else {
-//                                                Color.Red
-//                                            }
-//                                        )
-//                                        .fillMaxHeight()
-//                                        .padding(horizontal = 10.dp),
-//                                    verticalAlignment = Alignment.CenterVertically,
-//                                    horizontalArrangement = Arrangement.Center
-//                                ) {
-//                                    Text(
-//                                        text = "Settings",
-//                                        fontFamily = urbanistFont,
-//                                        fontWeight = FontWeight.Bold,
-//                                        color = Color(0xFF4F4F4F)
-//                                    )
-//                                }
-//                                Row(
-//                                    modifier = Modifier
-//                                        .background(color = Color(0xFFFF8A00))
-//                                        .fillMaxHeight()
-//                                        .padding(horizontal = 10.dp),
-//                                    verticalAlignment = Alignment.CenterVertically,
-//                                    horizontalArrangement = Arrangement.Center
-//                                ) {
-//                                    Text(
-//                                        text = "Account",
-//                                        fontFamily = urbanistFont,
-//                                        fontWeight = FontWeight.Bold,
-//                                        color = Color(0xFFFFFFFF),
-//                                    )
-//                                }
                             }
                         }
                     }
@@ -692,7 +667,7 @@ fun Home() {
 
 //adding gradient brush
 @Composable
-private fun handyConnectMGradient(
+fun handyConnectMGradient(
     colors: List<Color>
 ): Brush {
     return Brush.linearGradient(
@@ -712,5 +687,45 @@ fun GreetingView(text: String) {
 fun DefaultPreview() {
     MyApplicationTheme {
         GreetingView("Hello, Android!")
+    }
+}
+
+//main navigation header is mentioned here.
+@Composable
+fun InnNavHeader(navController: NavController, name: String, cntName: String) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 11.dp, vertical = 13.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.redirect),
+                contentDescription = "",
+                modifier = Modifier
+                    .size(15.dp)
+                    .clickable {
+                        navController.navigate(cntName)
+                    }
+            )
+            Spacer(modifier = Modifier.weight(1f))
+            Text(
+                text = name.take(20) + "...",
+                fontFamily = urbanistFont,
+                fontWeight = FontWeight.SemiBold,
+                fontSize = 24.sp
+            )
+            Spacer(modifier = Modifier.weight(1f))
+        }
+        Divider(
+            color = Color(0xFFB1B1B1),
+            modifier = Modifier
+                .height(1.dp)
+                .fillMaxWidth()
+        )
     }
 }
