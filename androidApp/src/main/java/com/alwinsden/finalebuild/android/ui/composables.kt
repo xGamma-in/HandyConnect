@@ -20,7 +20,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.material.icons.filled.Search
@@ -727,5 +729,20 @@ fun InnNavHeader(navController: NavController, name: String, cntName: String) {
                 .height(1.dp)
                 .fillMaxWidth()
         )
+    }
+}
+
+//component for vertical composable
+@Composable
+fun VerticalScroll(content: @Composable () -> Unit) {
+    Box {
+        var scrollState = rememberScrollState()
+        Column(
+            modifier = Modifier
+                .verticalScroll(scrollState)
+                .padding(horizontal = 16.dp)
+        ) {
+            content()
+        }
     }
 }
