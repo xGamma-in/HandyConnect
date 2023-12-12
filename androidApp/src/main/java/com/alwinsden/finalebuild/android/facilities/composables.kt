@@ -122,9 +122,9 @@ fun SavedVehicles() {
             )
             Spacer(modifier = Modifier.weight(1f))
             Text(
-                text = "Select one of your saved vehicles. Godspeed!",
+                text = "Select one of your saved vehicles.",
                 fontFamily = urbanistFont,
-                fontSize = 12.sp,
+                fontSize = 15.sp,
                 fontWeight = FontWeight(600),
                 color = Color.White
             )
